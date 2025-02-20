@@ -92,8 +92,9 @@ class HiddenMarkovModel:
         #Step 3. Traceback 
         best_path_pointer = max(range(len(self.hidden_states)), key=lambda h_i: viterbi_table[h_i][-1])
         best_path = [best_path_pointer]
+
         for i in range(len(decode_observation_states)-1,0,-1):
-            best_path.append(backpointer[best_path[0]][i])
+            best_path.append(backpointer[int(best_path[-1])][i])
 
         best_path = best_path[::-1]
         best_hss = []
